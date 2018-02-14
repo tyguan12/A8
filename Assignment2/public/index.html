@@ -4,8 +4,11 @@
   <script src='jquery-3.3.1.min.js'></script>
   <script>
 function sendToServer(){
-  // complete this function.
-  //  you can use loadFile()
+	function sendToServer(){
+	  var url = "./eval?eq=34+56"
+	loadFile (url,function(resData)){
+	$("#result").html(resData);
+	});
 }
   </script>
 
