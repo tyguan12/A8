@@ -60,12 +60,16 @@
   
 
   var currRSSData = null;
-  function changeRSSSrc()
-  {
+  
+  function changeRSS(){
     var feedURL = prompt("Enter your RSS feed URL:");
     var url = "./getFeedData?url=" + feedURL;
     loadRSS(url);
-	loadRSS("./getFeedData?url=" + 	window.location.hash.replace("#",""));
+  }
+  function changeRSSSrc()
+  {
+	var url = "./getFeedData?url=" + 	window.location.hash.replace("#","");
+    loadRSS(url);
   }
 
   function loadRSS(url){
