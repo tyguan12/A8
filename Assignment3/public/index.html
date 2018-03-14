@@ -61,14 +61,14 @@
 
   var currRSSData = null;
   
-  function changeRSS(){
-    var feedURL = prompt("Enter your RSS feed URL:");
-    var url = "./getFeedData?url=" + feedURL;
+  
+  function changeRSSrc(){
+    var url = "./getFeedData?url=" + 	window.location.hash.replace("#","");
     loadRSS(url);
   }
-  function changeRSSSrc()
-  {
-	var url = "./getFeedData?url=" + 	window.location.hash.replace("#","");
+  function changeRSSSrc(){
+    var feedURL = prompt("Enter your RSS feed URL:");
+    var url = "./getFeedData?url=" + feedURL;
     loadRSS(url);
   }
 
@@ -104,6 +104,8 @@
     $("#theDetails").html(markup);
     //document.getElementById("theDetails").innerHTML = markup;
   }
+  
+  changeRSSrc();
   </script>
 
 </head>
