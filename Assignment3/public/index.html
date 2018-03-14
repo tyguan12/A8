@@ -3,6 +3,38 @@
   <script src='asyncReq.js'></script>
   <script src='jquery-3.3.1.min.js'></script>
   <style>
+  #theList button{
+      border: 0px;
+      padding: 0px;
+      min-width: 100%;
+      box-shadow: 0px 0px 1px;
+  }
+  #theList button h1,
+  #theList button h2
+  {
+    padding: 0px;
+    margin: 0px;
+    font-size: 20px;
+    line-height: 20px;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+  #theList button h2
+  {
+    font-size: 15px;
+  }
+
+  #theList button img{
+      height: 100px;
+      width: 100px;
+      float: left;
+      margin-right: 5px;
+  }
+    #editButton{
+      float: right;
+      margin-top: -50px;
+      margin-right: 5px;
+    }
     #rssBox{
       float:left;
       width: 250px;
@@ -14,6 +46,7 @@
       width: calc(100% - 250px);
       min-height: 100%;
       background: lightgray;
+      text-align:center;
     }
   </style>
   <script>
@@ -24,6 +57,7 @@
       $("#result").val(resData);
     });
   }
+  
 
   var currRSSData = null;
   function changeRSSSrc()
@@ -31,12 +65,9 @@
     var feedURL = prompt("Enter your RSS feed URL:");
     var url = "./getFeedData?url=" + feedURL;
     loadRSS(url);
+	loadRSS("./getFeedData?url=" + 	window.location.hash.replace("#",""));
   }
-  
-  function TloadRss(url){
-  	loadRSS("./getFeedData?url=" + 		window.location.hash.replace("#",""))
-  }
-  
+
   function loadRSS(url){
     console.log(url);
     loadFile(url, function(resData){
@@ -59,12 +90,12 @@
     var markup = "";
     var thumbnail = data.artworkUrl100 || "";
     var name = data.name || "";
-	var link = data.URL || "";
+    var link = data.url || "";
     console.log(data);
 
     markup += "<img src='" + thumbnail + "'>";
-	markup += "<h1>" + name + "/<h1>"
-	markup +=
+    markup += "<a target='_blank' href='" + link + "'><h1>" + name + "</h1></a>";
+
 
     $("#theDetails").html(markup);
     //document.getElementById("theDetails").innerHTML = markup;
@@ -76,7 +107,7 @@
 <body>
 <div id='rssBox'>
 	<h1> RSS Reader </h1>
-  <button onclick='changeRSSSrc()'> Edit </button>
+  <button id='editButton' onclick='changeRSSSrc()'> Edit </button>
   <div id='theList'></div>
 </div>
 <div id='theDetails'></div>
